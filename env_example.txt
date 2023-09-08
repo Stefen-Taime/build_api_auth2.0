@@ -1,0 +1,4 @@
+MONGO_DETAILS=mongodb://root:example@localhost:27017/admin
+SECRET_KEY=Helloword2023!
+ALGORITHM="HS256"
+ACCESS_TOKEN_EXPIRE_MINUTES=15

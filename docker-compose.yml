@@ -1,0 +1,44 @@
+version: '3.1'
+
+services:
+
+  mongo:
+    image: mongo
+    container_name: mongo_container
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+
+  mongo-express:
+    image: mongo-express
+    container_name: mongo_express_container
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: root
+      ME_CONFIG_MONGODB_ADMINPASSWORD: example
+      ME_CONFIG_MONGODB_SERVER: mongo
+    ports:
+      - "8081:8081"
+    depends_on:
+      - mongo
+
+  web:
+    build: .
+    container_name: fastapi_container
+    environment:
+      - MONGO_DETAILS=mongodb://root:example@mongo:27017/admin
+      - SECRET_KEY=Helloword2023!
+      - ALGORITHM=HS256
+      - ACCESS_TOKEN_EXPIRE_MINUTES=5
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/usr/src/app/
+    depends_on:
+      - mongo
+
+volumes:
+  mongo_data:
