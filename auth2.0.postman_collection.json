@@ -1,0 +1,128 @@
+{
+	"info": {
+		"_postman_id": "69e6a86b-bd08-4b31-a8d8-dcf67ed03cca",
+		"name": "auth2.0",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "29619547"
+	},
+	"item": [
+		{
+			"name": "http://127.0.0.1:8000/users/",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"cety\",\r\n    \"password\": \"yo2023\",\r\n    \"email\": \"cety@example.com\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/users/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"users",
+						""
+					]
+				},
+				"description": "create user"
+			},
+			"response": []
+		},
+		{
+			"name": "http://127.0.0.1:8000/token",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "username",
+							"value": "cety",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "yo2023",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/token",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"token"
+					]
+				},
+				"description": "token"
+			},
+			"response": []
+		},
+		{
+			"name": "http://127.0.0.1:8000/filter_movies?genres=Animation&tags=dark hero&limit=5",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJtayIsImV4cCI6MTY5NDE5OTY3OH0.ExXiZAVum9kpPFYontsFCSV9As4qySLXu42dG4I7a2M",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/filter_movies?genres=Animation&tags=dark hero&limit=5",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"filter_movies"
+					],
+					"query": [
+						{
+							"key": "genres",
+							"value": "Animation"
+						},
+						{
+							"key": "tags",
+							"value": "dark hero"
+						},
+						{
+							"key": "limit",
+							"value": "5"
+						}
+					]
+				},
+				"description": "filter_movies"
+			},
+			"response": []
+		}
+	]
+}
